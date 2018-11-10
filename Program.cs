@@ -1,42 +1,49 @@
 ﻿using System;
 
-namespace matriz
+namespace Teste1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int qtdnome=2;
-
-
-            Console.WriteLine("Digite quantos nomes quer:");
-           qtdnome = Int32.Parse(Console.ReadLine());
-
-            String[,] nome = new string[qtdnome, 2];
-
-            for (int i = 0; i < qtdnome; i++)
+            int op;
+            Cliente c = new Cliente();
+            do
             {
-                for (int j = 0; j < qtdnome; j++)
+                Console.WriteLine("Digite 1 para Cadastrar");
+                Console.WriteLine("Digite 2 para Listar");
+                Console.WriteLine("Digite 3 para editar");
+                Console.WriteLine("Digite 0 para Sair");
+                op = Int32.Parse(Console.ReadLine());
+                if (op == 1 || op == 2 || op == 3 || op == 0)
                 {
-                   
-                    if (j == 1)
+                    switch (op)
                     {
-                        Console.WriteLine("Dgite o sobrenome da " + (i + 1) + " pessoa");
-                        nome[i, j] = Console.ReadLine();
-                    }else{
-                        Console.WriteLine("Dgite o nome da " + (i + 1) + " pessoa");
-                        nome[i, j] = Console.ReadLine();
+                        case 1:
+                            c.cad();
+                            break;
+                        case 2:
+                            c.listar();
+                            break;
+                        case 3:
+                            Console.Clear();
+                            Console.WriteLine("Digite o codigo da pessoa que deseja alterar");
+                            c.editar(Int32.Parse(Console.ReadLine()));
+                            break;
+                        case 0:
+                            Console.Clear();
+                            Console.WriteLine("Volte sempre");
+                            break;
+
                     }
                 }
-            }
-            for (int i = 0; i < qtdnome; i++)
-            {
-                for (int j = 0; j < qtdnome; j++)
+                else
                 {
-                    Console.Write(" " + nome[i, j]);
+                    Console.WriteLine("Opcao invalida");
+                    Console.ReadKey();
                 }
-                Console.WriteLine("");
-            }
+
+            } while (op != 0);
         }
     }
 }
